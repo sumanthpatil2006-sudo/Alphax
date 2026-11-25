@@ -1,0 +1,241 @@
+.welcome-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  color: #fff;
+  border: none;
+}
+
+.welcome-banner h2 {
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.welcome-banner p {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.welcome-banner .btn {
+  background: #ffffff;
+  color: #4f46e5 !important;
+}
+
+.welcome-banner .btn:hover {
+  background: #eef2ff;
+}
+
+.stats-grid,
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 6px;
+}
+
+.action-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.action-card p {
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+/* Upload Dropzone */
+.dropzone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 26px 18px;
+  text-align: center;
+  background: var(--surface-alt);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  margin-bottom: 14px;
+}
+
+.dropzone:hover,
+.dropzone.dragover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.dropzone input[type="file"] {
+  display: none;
+}
+
+.dropzone span {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.row-inline > input {
+  flex: 1 1 260px;
+  margin-bottom: 0;
+}
+
+.row-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.pill-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.pill-tab {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pill-tab.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* Notes List */
+.note-card {
+  border-left: 4px solid var(--primary);
+}
+
+.note-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.83rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.note-tag {
+  background: var(--primary-soft);
+  color: var(--primary);
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.76rem;
+}
+
+.note-preview {
+  white-space: pre-wrap;
+  color: #334155;
+  background: var(--surface-alt);
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin: 10px 0 14px;
+  max-height: 220px;
+  overflow-y: auto;
+  font-size: 0.94rem;
+}
+
+.note-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* AI Tutor */
+.tutor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ai-output {
+  white-space: pre-wrap;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  min-height: 120px;
+  font-size: 0.96rem;
+}
+
+.chat-log {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.chat-msg {
+  padding: 12px 15px;
+  border-radius: 12px;
+  max-width: 92%;
+  white-space: pre-wrap;
+  font-size: 0.94rem;
+}
+
+.chat-msg.user {
+  align-self: flex-end;
+  background: var(--primary);
+  color: #fff;
+}
+
+.chat-msg.ai {
+  align-self: flex-start;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.pdf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 10px 0;
+}

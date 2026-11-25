@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload notes – AlphaX</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="dashboard.html" class="brand">Alpha<span>X</span></a>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="upload.html" class="active">Upload Notes</a>
+      <a href="my-notes.html">My Notes</a>
+      <a href="ai-tutor.html">AI Tutor</a>
+      <div class="nav-user">
+        <span class="badge" id="syncBadge">Checking...</span>
+        <span class="user-pill" id="navUserName">Student</span>
+        <a href="#" id="logoutBtn" class="btn sm secondary">Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h2>Upload your notes</h2>
+      <p class="status">Choose an image or PDF (up to 15 MB). Scanned PDFs and images are read with OCR; text-based PDFs are extracted directly.</p>
+      <label class="dropzone" for="fileInput">
+        <strong>Select a note image or PDF</strong>
+        <span>JPG, PNG, WebP, or PDF · up to 15 MB</span>
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,application/pdf,.jpg,.jpeg,.png,.webp,.pdf" />
+      </label>
+      <img id="preview" class="preview" alt="Selected note preview" hidden />
+      <p id="previewLabel" class="pdf-chip" hidden></p>
+      <div class="row-inline">
+        <button type="button" class="btn" id="extractBtn">Extract text</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="card">
+      <h3>Review and edit extracted text</h3>
+      <label for="noteTitle">Note title</label>
+      <input type="text" id="noteTitle" maxlength="120" placeholder="e.g. Cell biology – lecture 3" />
+      <label for="noteType">Notes type</label>
+      <select id="noteType">
+        <option value="printed">Printed</option>
+        <option value="handwritten">Handwritten</option>
+        <option value="mixed">Mixed / other</option>
+      </select>
+      <label for="textOutput">Extracted text</label>
+      <textarea id="textOutput" placeholder="Extracted text will appear here. You can also paste or type notes directly." maxlength="20000"></textarea>
+      <button type="button" class="btn" id="saveBtn">Save note</button>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script type="module" src="js/upload.js"></script>
+</body>
+</html>

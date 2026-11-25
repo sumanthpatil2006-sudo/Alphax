@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Secrets (never commit these)
+.env
+.env.*
+!server/.env.example
+service-account*.json
+serviceAccountKey.json
+
+# Firebase local cache
+.firebase/
+firebase-debug.log
+*-debug.log
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Logs
+*.log

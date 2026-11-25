@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My notes – AlphaX</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="dashboard.html" class="brand">Alpha<span>X</span></a>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="upload.html">Upload Notes</a>
+      <a href="my-notes.html" class="active">My Notes</a>
+      <a href="ai-tutor.html">AI Tutor</a>
+      <div class="nav-user">
+        <span class="badge" id="syncBadge">Checking...</span>
+        <span class="user-pill" id="navUserName">Student</span>
+        <a href="#" id="logoutBtn" class="btn sm secondary">Logout</a>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+    <div class="welcome-banner card">
+      <div>
+        <h2>My Notes</h2>
+        <p>Your saved notes and study materials.</p>
+      </div>
+      <a class="btn" href="upload.html">+ Upload Notes</a>
+    </div>
+    <div id="notesList" aria-live="polite">
+      <p class="status">Loading your notes...</p>
+    </div>
+  </main>
+  <script type="module" src="js/notes.js"></script>
+</body>
+</html>

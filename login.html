@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – AlphaX</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body class="auth-page">
+  <header class="nav">
+    <a href="index.html" class="brand">Alpha<span>X</span></a>
+    <nav>
+      <a href="registration.html">Sign up</a>
+    </nav>
+  </header>
+
+  <main class="auth-wrap">
+    <div class="card auth-box">
+      <h2>Welcome back</h2>
+      <p class="auth-subtitle">Sign in to access your saved notes and AI Tutor.</p>
+      <form id="loginForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
+
+        <button type="submit" class="btn" id="loginBtn">Login</button>
+      </form>
+      <p class="status" id="msg"></p>
+      <p class="auth-switch">New here? <a href="registration.html">Create an account</a></p>
+    </div>
+  </main>
+
+  <script type="module">
+    import { loginUser, redirectIfLoggedIn } from "./js/auth.js";
+
+    redirectIfLoggedIn();
+
+    const form = document.getElementById("loginForm");
+    const btn = document.getElementById("loginBtn");
+    const msg = document.getElementById("msg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msg.className = "status";
+      msg.textContent = "Signing in...";
+      btn.disabled = true;
+
+      try {
+        const res = await loginUser(
+          document.getElementById("email").value.trim(),
+          document.getElementById("password").value
+        );
+
+        if (res.ok) {
+          msg.className = "status success";
+          msg.textContent = res.message;
+          location.href = "dashboard.html";
+        } else {
+          msg.className = "status error";
+          msg.textContent = res.message;
+          btn.disabled = false;
+        }
+      } catch (error) {
+        console.error("Login failed:", error);
+        msg.className = "status error";
+        msg.textContent = error.message || "Could not sign in. Please try again.";
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

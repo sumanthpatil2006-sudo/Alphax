@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard – AlphaX</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="dashboard.html" class="brand">Alpha<span>X</span></a>
+    <nav>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="upload.html">Upload Notes</a>
+      <a href="my-notes.html">My Notes</a>
+      <a href="ai-tutor.html">AI Tutor</a>
+      <div class="nav-user">
+        <span class="badge" id="syncBadge">Checking...</span>
+        <span class="user-pill" id="navUserName">Student</span>
+        <a href="#" id="logoutBtn" class="btn sm secondary">Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="card welcome-banner">
+      <div>
+        <h2 id="welcome">Welcome to AlphaX</h2>
+        <p id="welcomeSub">Ready to turn your study notes into clear understanding.</p>
+      </div>
+      <a class="btn" href="upload.html">+ Upload Notes</a>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Saved Notes</div>
+        <div class="stat-value" id="noteCount">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">AI Backend</div>
+        <div class="stat-value" id="aiStatusText" style="font-size:1.15rem;margin-top:12px;">Checking...</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Account Email</div>
+        <div class="stat-value" id="profileEmail" style="font-size:1rem;margin-top:14px;word-break:break-all;">-</div>
+      </div>
+    </div>
+
+    <div class="action-grid">
+      <div class="card action-card">
+        <div>
+          <h3>Upload &amp; Extract</h3>
+          <p>Upload handwritten photos, printed pages, or PDFs. Edit extracted text before saving.</p>
+        </div>
+        <a class="btn" href="upload.html">Go to Upload</a>
+      </div>
+
+      <div class="card action-card">
+        <div>
+          <h3>My Notes Library</h3>
+          <p>Browse your saved notes, view original uploads, and jump into AI study tools.</p>
+        </div>
+        <a class="btn soft" href="my-notes.html">View My Notes</a>
+      </div>
+
+      <div class="card action-card">
+        <div>
+          <h3>Gemini AI Tutor</h3>
+          <p>Get simple explanations, structured summaries, and exam Q&amp;A for any note.</p>
+        </div>
+        <a class="btn soft" href="ai-tutor.html">Open AI Tutor</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h3>Recent Notes</h3>
+        <a href="my-notes.html" style="font-size:0.9rem;font-weight:600;">See all</a>
+      </div>
+      <div id="recentNotes">
+        <p class="status">Loading your notes...</p>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

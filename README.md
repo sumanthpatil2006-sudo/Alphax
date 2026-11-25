@@ -1,99 +1,53 @@
+# AlphaX
 
-# AlphaX – AI-Powered Learning Intelligence
+AlphaX turns uploaded study notes into editable text, simple explanations, summaries, and practice questions. The MVP uses Firebase Authentication, Cloud Firestore, and Firebase Storage when configured; without Firebase web settings it runs in browser-local demo mode.
 
-AlphaX is a smart learning platform designed to help students organize their study materials and make learning easier using AI-powered technologies.
+## Run locally
 
-Our goal is to transform traditional study notes into accessible and organized digital learning resources.
+Requirements: Node.js 20 or newer and an internet connection for Firebase, Gemini, Tesseract.js, and PDF.js.
 
-## 🚀 Features
+1. In `firebase/firebase-config.js`, replace the placeholder values with the web app configuration from Firebase Console.
+2. In Firebase Console, enable **Authentication → Email/Password**, create a **Firestore Database**, and enable **Storage**.
+3. From the project root, copy the server environment template and edit it:
 
-- **Student Dashboard:** A simple and responsive learning dashboard.
-- **Upload Study Materials:** Upload images of handwritten or printed notes.
-- **OCR Text Extraction:** Extract text from images using Tesseract.js.
-- **Text Preview:** View and edit extracted study content.
-- **Save Notes:** Save extracted notes in browser local storage.
-- **Manage Notes:** View and delete saved study materials.
-- **Responsive Design:** Works across desktop and mobile devices.
+   ```powershell
+   Copy-Item server\.env.example server\.env
+   notepad server\.env
+   ```
 
-## 🛠️ Tech Stack
+4. Set `GEMINI_API_KEY` to a Gemini API key. Configure Firebase Admin credentials for the backend by either setting `GOOGLE_APPLICATION_CREDENTIALS` to a service-account JSON file outside this repository, or pasting the service-account JSON into `FIREBASE_SERVICE_ACCOUNT_JSON`. Set `FIREBASE_PROJECT_ID` to your project ID.
+5. Install dependencies and start the app from the project root:
 
-### Frontend
-- HTML5
-- CSS3
-- JavaScript
+   ```powershell
+   npm install --prefix server
+   npm run dev --prefix server
+   ```
 
-### AI & Documents
-- Tesseract.js – Optical Character Recognition (OCR)
-- Gemini API – Planned AI-powered explanations
+6. Open [http://localhost:3000](http://localhost:3000). The Express server serves both the pages and the API. Run backend checks with `npm test --prefix server`.
 
-### Backend & Database
-- Firebase Authentication – Planned
-- Cloud Firestore – Planned
+The Firebase web configuration is public client configuration, not a secret. Restrict its API key in Google Cloud Console. Never commit `server/.env` or service-account credentials. The backend verifies Firebase ID tokens before calling Gemini. `FRONTEND_ORIGIN` is only needed when the frontend is hosted on a different origin; enter allowed origins as a comma-separated list.
 
-### Deployment
-- Firebase Hosting – Planned
+## Firebase security rules
 
-### Development Tools
-- Visual Studio Code
-- Git
-- GitHub
+The included `firestore.rules` and `storage.rules` restrict notes and uploads to their owner. Deploy them with the Firebase CLI after signing in and selecting your Firebase project:
 
-## 📂 Project Structure
-
-```text
-AlphaX/
-│
-├── index.html
-├── style.css
-├── script.js
-└── README.md
+```powershell
+firebase deploy --only firestore:rules,storage
 ```
 
-## ⚙️ Getting Started
+`firebase.json` points the CLI to these rules. Confirm that your Firebase project has Firestore and Storage enabled before deployment.
 
-### 1. Clone the repository
+## MVP features
 
-```bash
-git clone https://github.com/sumanthpatil2006-sudo/Alphax.git
-```
+- Email/password registration and login, logout, and user-specific pages.
+- Browser-local demo accounts and notes if Firebase web configuration is still a placeholder. Demo accounts use a salted password hash, but local mode is not production authentication and does not sync across browsers.
+- Image OCR for JPG, PNG, and WebP, plus text extraction and OCR fallback for PDFs (up to 30 pages). OCR uses English.
+- Editable extracted text, note upload to Firebase Storage, and notes saved to Firestore.
+- Gemini explanations, summaries, practice questions, and follow-up tutoring through the authenticated Express API.
+- Responsive dashboard, recent notes, note library, and AI Tutor.
 
-### 2. Open the project
+Uploads are limited to 15 MB, and AI input is limited to 20,000 characters. OCR quality depends on scan clarity; handwriting may need manual correction. Third-party OCR/PDF scripts are loaded from CDNs.
 
-```bash
-cd Alphax
-```
+## Local demo mode
 
-### 3. Run the application
-
-Open `index.html` in your browser.
-
-You can also use the Live Server extension in VS Code.
-
-## 📖 How It Works
-
-1. Open the AlphaX dashboard.
-2. Select an image containing study notes.
-3. Upload the image.
-4. Use OCR to extract the text.
-5. Review and edit the extracted content.
-6. Save your notes.
-7. Access your saved notes from the dashboard.
-
-## 🔮 Future Enhancements
-
-- Student authentication using Firebase.
-- Cloud-based storage using Firestore.
-- AI-powered explanations using Gemini API.
-- Intelligent topic identification.
-- Personalized learning recommendations.
-- Secure cloud deployment.
-
-## 🎯 Vision
-
-To make quality learning resources more accessible through intelligent technology and provide students with a smarter, more organized learning experience.
-
----
-
-**AlphaX – Learn Smarter. Grow Faster.**
-
-wHACKiest 2026
+Without Firebase settings, registration, login, and notes run only in that browser using `localStorage`. This is useful for trying the UI and OCR, but Gemini endpoints deliberately require a Firebase-authenticated account and valid Firebase Admin credentials. Configure Firebase and Gemini to use AI features.

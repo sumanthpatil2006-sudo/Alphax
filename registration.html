@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register – AlphaX</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body class="auth-page">
+  <header class="nav">
+    <a href="index.html" class="brand">Alpha<span>X</span></a>
+    <nav>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="auth-wrap">
+    <div class="card auth-box">
+      <h2>Create your account</h2>
+      <p class="auth-subtitle">Start turning handwritten and printed notes into clear understanding.</p>
+      <form id="registerForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="e.g. Aarav Sharma" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Minimum 6 characters" minlength="6" required />
+
+        <button type="submit" class="btn" id="registerBtn">Create account</button>
+      </form>
+      <p class="status" id="msg"></p>
+      <p class="auth-switch">Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </main>
+
+  <script type="module">
+    import { registerUser, redirectIfLoggedIn } from "./js/auth.js";
+
+    redirectIfLoggedIn();
+
+    const form = document.getElementById("registerForm");
+    const btn = document.getElementById("registerBtn");
+    const msg = document.getElementById("msg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msg.className = "status";
+      msg.textContent = "Creating account...";
+      btn.disabled = true;
+
+      try {
+        const res = await registerUser(
+          document.getElementById("name").value.trim(),
+          document.getElementById("email").value.trim(),
+          document.getElementById("password").value
+        );
+
+        if (res.ok) {
+          msg.className = "status success";
+          msg.textContent = res.message;
+          location.href = "dashboard.html";
+        } else {
+          msg.className = "status error";
+          msg.textContent = res.message;
+          btn.disabled = false;
+        }
+      } catch (error) {
+        console.error("Registration failed:", error);
+        msg.className = "status error";
+        msg.textContent = error.message || "Could not create your account. Please try again.";
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
