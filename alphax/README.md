@@ -1,16 +1,46 @@
-# React + Vite
+# 🎓 AlphaX — AI Curriculum & Study Gap Auditor
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> **Never miss a critical syllabus topic before exams.**  
+> AlphaX compares your official course outline against your typed and handwritten lecture notes using multimodal AI to pinpoint exact knowledge gaps and generate instant revision guides.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚨 The Problem: "Syllabus Blindness"
+Students prepare for exams using scattered PDFs, lecture slides, and photos of handwritten notebooks. Cross-checking dozens of pages line-by-line against an official university syllabus takes hours—and students often discover missing subtopics, derivations, or formulas only when they see the exam paper.
 
-## React Compiler
+## 💡 The Solution
+**AlphaX** acts as an automated academic curriculum auditor:
+1. **Upload Your Course Outline:** Drop in an official syllabus PDF or photo.
+2. **Upload Your Notes:** Attach multiple files at once—including lecture PDFs, slides, and photos of handwritten pages.
+3. **Instant Gap Mapping:** AlphaX extracts every topic and classifies your preparation into **Covered**, **Partially Covered** (highlighting exact missing formulas/derivations), or **Not Covered**.
+4. **One-Click Revision Notes:** Generate high-yield, exam-ready study notes for any missing or incomplete topic directly inside the dashboard.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## ✨ Key Features
+- **Multimodal Document & Handwriting Analysis:** Powered by **Gemini 3 Flash Preview** to read PDFs, tables, diagrams, and handwritten pages simultaneously.
+- **Deterministic Structured Reports:** Uses strict JSON schema enforcement to calculate accurate completion percentages and categorize every syllabus topic.
+- **Interactive Gap Dashboard:** Filter topics by *All*, *Missing*, *Partially Covered*, or *Covered* with animated progress tracking.
+- **AI Quick Revision Drawer:** Generates concise definitions, key formulas, and exam pitfalls for any flagged gap.
+- **Multi-Subject Management:** Track multiple courses across a semester with persistent storage via **Firebase Firestore** or instant browser-based **Demo Mode**.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+---
+
+## 🛠️ Tech Stack
+- **Frontend:** React 19, Vite, Tailwind CSS v4, Lucide Icons
+- **AI Engine:** Google Gemini API (`gemini-3-flash-preview` with structured `responseSchema`)
+- **Authentication & Database:** Firebase Auth (Google Sign-In) & Cloud Firestore (plus LocalStorage Demo Mode)
+
+---
+
+## 🚀 Getting Started Locally
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- A free Gemini API Key from [Google AI Studio](https://aistudio.google.com/)
+
+### Installation
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/sumanthpatil2006-sudo/AlphaX.git](https://github.com/sumanthpatil2006-sudo/AlphaX.git)
+   cd AlphaX
